@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rupsa | Curious about the world</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   THEME
+========================================================= */
+
+:root {
+    --background: #f5f2e9;
+    --text: #420000;
+    --accent: #720000;
+    --border: #873cff;
+
+    --card-1: #720000;
+    --card-2: #720000;
+    --card-3: #720000;
+    --card-4: #720000;
+
+    --card-shadow: rgba(66, 0, 0, 0.12);
+
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "DM Sans", Arial, sans-serif;
+}
+
+/*
+   Dark mode follows your blue-grey palette, but the page
+   background itself is darker than #06141B.
+*/
+body.dark {
+    --background: #030B10;
+    --text: #CCD0CF;
+    --accent: #CCD0CF;
+    --border: #4A5C6A;
+
+    --card-1: #11212D;
+    --card-2: #253745;
+    --card-3: #4A5C6A;
+    --card-4: #9BA8AB;
+
+    --card-shadow: rgba(0, 0, 0, 0.48);
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #e7e7ea;
+    color: var(--text);
+    font-family: var(--sans);
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+body.dark {
+    background: #030B10;
+}
+
+.page {
+    width: min(1100px, calc(100% - 40px));
+    min-height: calc(100vh - 40px);
+
+    margin: 20px auto;
+
+    background: var(--background);
+    border: 3px solid var(--border);
+
+    overflow: hidden;
+
+    transition:
+        background 0.4s ease,
+        border-color 0.4s ease;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 42px;
+
+    border-bottom: 1px solid rgba(114, 0, 0, 0.12);
+
+    transition: border-color 0.4s ease;
+}
+
+body.dark .nav {
+    border-bottom-color: #11212D;
+}
+
+.logo {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+
+    color: var(--accent);
+    text-decoration: none;
+
+    transition: color 0.4s ease;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.nav-link {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.88rem;
+
+    transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.55;
+}
+
+.theme-toggle {
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid transparent;
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--text);
+
+    cursor: pointer;
+    font-size: 1.05rem;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.25s ease,
+        color 0.4s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg);
+}
+
+body.dark .theme-toggle:hover {
+    background: #11212D;
+    border-color: #4A5C6A;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    max-width: 850px;
+    margin: 0 auto;
+
+    padding: 78px 40px 62px;
+
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 5.8rem);
+
+    line-height: 0.98;
+    font-style: italic;
+    font-weight: 500;
+
+    color: var(--accent);
+
+    letter-spacing: -0.045em;
+
+    transition: color 0.4s ease;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: 25px auto 0;
+
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+
+    line-height: 1.55;
+    color: var(--accent);
+
+    transition: color 0.4s ease;
+}
+
+.hero-line {
+    width: 55px;
+    height: 2px;
+
+    margin: 34px auto 0;
+
+    background: var(--accent);
+    opacity: 0.6;
+
+    transition: background 0.4s ease;
+}
+
+/* =========================================================
+   CARDS — IMAGE + TEXT PORTFOLIO STYLE
+========================================================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+
+    padding: 0 40px 72px;
+}
+
+.card {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border: 1px solid #d8d8d5;
+    border-radius: 22px;
+
+    background: #ffffff;
+    color: #30363b;
+
+    text-decoration: none;
+
+    box-shadow: 0 12px 35px rgba(20, 30, 35, 0.07);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 22px 45px rgba(20, 30, 35, 0.14);
+}
+
+body.dark .card {
+    background: #11212D;
+    border-color: #253745;
+    color: #CCD0CF;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .card:hover {
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.55);
+}
+
+/* =========================================================
+   IMAGE AREA
+========================================================= */
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 1.18 / 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    /*
+       Fixed neutral slate. It deliberately does not change
+       between light and dark mode.
+    */
+    background: #9BA8AB;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    transition: transform 0.45s ease;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.035);
+}
+
+/* Individual image framing */
+
+.card-about .card-image img {
+    object-fit: contain;
+    padding: 0;
+}
+
+.card-projects .card-image img {
+    object-fit: contain;
+    padding: 18px;
+}
+
+.card-publications .card-image img {
+    object-fit: contain;
+    padding: 12px 25px;
+}
+
+/* =========================================================
+   TEXT AREA
+========================================================= */
+
+.card-content {
+    padding: 25px 24px 27px;
+    background: #ffffff;
+
+    transition: background 0.4s ease;
+}
+
+body.dark .card-content {
+    background: #11212D;
+}
+
+.card-title {
+    margin: 0 0 13px;
+
+    font-family: var(--sans);
+    font-size: 1.32rem;
+    font-weight: 500;
+    line-height: 1.2;
+
+    color: #30363b;
+
+    transition: color 0.4s ease;
+}
+
+body.dark .card-title {
+    color: #CCD0CF;
+}
+
+.card-description {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    line-height: 1.55;
+
+    color: #687078;
+
+    transition: color 0.4s ease;
+}
+
+body.dark .card-description {
+    color: #9BA8AB;
+}
+
+/* =========================================================
+   READINGS & RESOURCES
+========================================================= */
+
+.card-special {
+    min-height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px;
+
+    text-align: center;
+
+    background: #720000;
+    border-color: #720000;
+
+    color: #ffffff;
+}
+
+.card-special:hover {
+    background: #620000;
+    border-color: #620000;
+}
+
+body.dark .card-special {
+    background: #9BA8AB;
+    border-color: #9BA8AB;
+    color: #06141B;
+}
+
+body.dark .card-special:hover {
+    background: #CCD0CF;
+    border-color: #CCD0CF;
+}
+
+.special-title {
+    font-family: var(--serif);
+    font-size: 1.55rem;
+    line-height: 1.35;
+
+    color: inherit;
+}
+
+.special-arrow {
+    display: block;
+
+    margin-top: 20px;
+
+    font-family: var(--sans);
+    font-size: 1.4rem;
+
+    transition: transform 0.25s ease;
+}
+
+.card-special:hover .special-arrow {
+    transform: translateX(7px);
+}
+
+/* =========================================================
+   INTRODUCTION
+========================================================= */
+
+.below-cards {
+    text-align: center;
+    padding: 0 40px 80px;
+}
+
+.below-cards p {
+    max-width: 600px;
+    margin: auto;
+
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    line-height: 1.7;
+
+    opacity: 0.8;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid rgba(114, 0, 0, 0.12);
+
+    padding: 25px 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 0.8rem;
+    opacity: 0.65;
+
+    transition: border-color 0.4s ease;
+}
+
+body.dark footer {
+    border-top-color: #11212D;
+}
+
+/* =========================================================
+   SUBPAGE / RESOURCE LINK STYLING
+========================================================= */
+
+body.dark .resource-item a,
+body.dark main:not(.page) a {
+    color: #4A5C6A;
+}
+
+body.dark .resource-item a:hover,
+body.dark main:not(.page) a:hover {
+    color: #9BA8AB;
+}
+
+body.dark a {
+    transition: color 0.25s ease;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .page {
+        width: calc(100% - 20px);
+        margin: 10px auto;
+        border-width: 2px;
+    }
+
+    .nav {
+        height: 62px;
+        padding: 0 22px;
+    }
+
+    .nav-right .nav-link {
+        display: none;
+    }
+
+    .hero {
+        padding: 65px 22px 50px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.8rem, 13vw, 4rem);
+    }
+
+    .hero-description {
+        font-size: 1.05rem;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 22px 55px;
+    }
+
+    .card {
+        min-height: 0;
+    }
+
+    .card-image {
+        aspect-ratio: 1.25 / 1;
+    }
+
+    .card-content {
+        padding: 22px 20px 24px;
+    }
+
+    .below-cards {
+        padding: 0 25px 60px;
+    }
+
+    footer {
+        padding: 22px;
+
+        flex-direction: column;
+        gap: 8px;
+
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav class="nav">
+
+        <a href="index.html" class="logo">
+            Rupsa
+        </a>
+
+        <div class="nav-right">
+
+            <a href="about/" class="nav-link">About</a>
+            <a href="research/" class="nav-link">Research</a>
+            <a href="writing/" class="nav-link">Writing</a>
+            <a href="cv/" class="nav-link">CV</a>
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                aria-label="Toggle dark mode"
+                title="Toggle dark mode">
+                ☾
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+        <h1>
+            Hello, I am Rupsa!
+        </h1>
+
+        <p class="hero-description">
+            Curious about the world around me,
+            curious about how we come to know about it.
+        </p>
+
+        <div class="hero-line"></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CLICKABLE CARDS
+
+         Put the three supplied images in:
+
+         images/about-me.png
+         images/projects.png
+         images/publications.png
+
+         The first image = About Me
+         The second image = Projects
+         The third image = Publications
+    ====================================================== -->
+
+    <section class="cards">
+
+        <!-- ABOUT ME -->
+        <a href="about/" class="card card-about">
+
+            <div class="card-image">
+                <img
+                    src="images/about-me.png"
+                    alt="Illustration for About Me">
+            </div>
+
+            <div class="card-content">
+                <h2 class="card-title">About me</h2>
+
+                <p class="card-description">
+                    A little about who I am, what I study,
+                    and the questions that keep me curious.
+                </p>
+            </div>
+
+        </a>
+
+
+        <!-- PROJECTS -->
+        <a href="projects/" class="card card-projects">
+
+            <div class="card-image">
+                <img
+                    src="images/projects.png"
+                    alt="Illustration for Projects">
+            </div>
+
+            <div class="card-content">
+                <h2 class="card-title">Projects</h2>
+
+                <p class="card-description">
+                    Computational models, experiments,
+                    simulations, and things I am building.
+                </p>
+            </div>
+
+        </a>
+
+
+        <!-- PUBLICATIONS -->
+        <a href="publications/" class="card card-publications">
+
+            <div class="card-image">
+                <img
+                    src="images/publications.png"
+                    alt="Illustration for Publications">
+            </div>
+
+            <div class="card-content">
+                <h2 class="card-title">Publications</h2>
+
+                <p class="card-description">
+                    Research papers, academic writing,
+                    and work that has made its way into print.
+                </p>
+            </div>
+
+        </a>
+
+
+        <!-- READINGS & RESOURCES -->
+        <a href="resources/" class="card card-special">
+
+            <div class="special-title">
+
+                Readings<br>
+                &amp; Resources
+
+                <span class="special-arrow">
+                    →
+                </span>
+
+            </div>
+
+        </a>
+
+    </section>
+
+
+    <!-- =====================================================
+         INTRODUCTION
+    ====================================================== -->
+
+    <section class="below-cards">
+
+        <p>
+            I am interested in questions that sit between
+            science, education, computation, and the ways
+            we make sense of the world.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <span>
+            © 2026 Rupsa
+        </span>
+
+        <span>
+            Research · Writing · Exploration
+        </span>
+
+    </footer>
+
+</main>
+
+
+<script>
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+const toggle = document.getElementById("themeToggle");
+
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    toggle.textContent = "☀";
+}
+
+toggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+    const isDark =
+        document.body.classList.contains("dark");
+
+    toggle.textContent =
+        isDark ? "☀" : "☾";
+
+    localStorage.setItem(
+        "theme",
+        isDark ? "dark" : "light"
+    );
+
+});
+</script>
+
+</body>
+</html>
