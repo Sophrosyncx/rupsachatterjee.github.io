@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About Me | Rupsa</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    /* Day mode: deep reddish background with beige text */
+    --background: #4A0000;
+    --text: #F5F2E9;
+    --accent: #F5F2E9;
+    --border: #873cff;
+
+    --card: #420000;
+    --muted: #E4DED2;
+
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "DM Sans", Arial, sans-serif;
+}
+
+body.dark {
+    /* Dark mode: deep blue-black background with light blue-grey text */
+    --background: #030B10;
+    --text: #CCD0CF;
+    --accent: #CCD0CF;
+    --border: #4A5C6A;
+
+    --card: #11212D;
+    --muted: #9BA8AB;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #4A0000;
+    color: var(--text);
+    font-family: var(--sans);
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease;
+}
+
+body.dark {
+    background: #030B10;
+}
+
+.page {
+    width: min(1100px, calc(100% - 40px));
+    min-height: calc(100vh - 40px);
+
+    margin: 20px auto;
+
+    background: var(--background);
+    border: 3px solid var(--border);
+
+    overflow: hidden;
+
+    transition:
+        background 0.4s ease,
+        border-color 0.4s ease;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 42px;
+
+    border-bottom: 1px solid rgba(245, 242, 233, 0.20);
+}
+
+body.dark .nav {
+    border-bottom-color: #11212D;
+}
+
+.logo {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.nav-link {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.88rem;
+
+    transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.55;
+}
+
+.theme-toggle {
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid transparent;
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--text);
+
+    cursor: pointer;
+    font-size: 1.05rem;
+}
+
+body.dark .theme-toggle:hover {
+    background: #11212D;
+    border-color: #4A5C6A;
+}
+
+/* =========================================================
+   ABOUT HEADER
+========================================================= */
+
+.about-header {
+    padding: 76px 55px 50px;
+}
+
+.eyebrow {
+    margin-bottom: 15px;
+
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    color: var(--muted);
+}
+
+.about-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 7vw, 6rem);
+    line-height: 0.98;
+
+    font-style: italic;
+    font-weight: 500;
+
+    letter-spacing: -0.045em;
+
+    color: var(--accent);
+}
+
+.about-header .intro {
+    max-width: 780px;
+    margin-top: 28px;
+
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    line-height: 1.6;
+
+    color: var(--text);
+}
+
+/* =========================================================
+   ABOUT CONTENT
+========================================================= */
+
+.about-grid {
+    display: block;
+
+    padding: 0 55px 80px;
+}
+
+/* Text */
+
+.about-text {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.about-text p {
+    margin-bottom: 27px;
+
+    font-size: 1.02rem;
+    line-height: 1.8;
+
+    color: var(--text);
+}
+
+.about-text strong {
+    font-weight: 600;
+}
+
+/* =========================================================
+   SMALL DIVIDER
+========================================================= */
+
+.about-divider {
+    width: 55px;
+    height: 2px;
+
+    margin: 0 0 32px;
+
+    background: var(--accent);
+    opacity: 0.55;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid rgba(245, 242, 233, 0.20);
+
+    padding: 25px 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 0.8rem;
+
+    color: var(--muted);
+}
+
+body.dark footer {
+    border-top-color: #11212D;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .page {
+        width: calc(100% - 20px);
+        margin: 10px auto;
+        border-width: 2px;
+    }
+
+    .nav {
+        height: 62px;
+        padding: 0 22px;
+    }
+
+    .nav-right .nav-link {
+        display: none;
+    }
+
+    .about-header {
+        padding: 60px 25px 40px;
+    }
+
+    .about-header h1 {
+        font-size: clamp(3rem, 15vw, 5rem);
+    }
+
+    .about-grid {
+        padding: 0 25px 60px;
+    }
+
+    .about-text p {
+        font-size: 0.98rem;
+        line-height: 1.75;
+    }
+
+    footer {
+        padding: 22px 25px;
+
+        flex-direction: column;
+        gap: 8px;
+
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav class="nav">
+
+        <a href="../" class="logo">
+            Rupsa
+        </a>
+
+        <div class="nav-right">
+
+            <a href="../about/" class="nav-link">About</a>
+            <a href="../projects/" class="nav-link">Projects</a>
+            <a href="../publications/" class="nav-link">Publications</a>
+            <a href="../resources/" class="nav-link">Readings &amp; Resources</a>
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                aria-label="Toggle dark mode"
+                title="Toggle dark mode">
+                ☾
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         ABOUT HEADER
+    ====================================================== -->
+
+    <header class="about-header">
+
+        <div class="eyebrow">
+            About me
+        </div>
+
+        <h1>
+            Curiosity at the boundaries.
+        </h1>
+
+        <p class="intro">
+            I am Rupsa Chatterjee, a fourth year Integrated Masters
+            student at IISER Pune. I am interested in learning and,
+            hopefully, researching in Physics, along with doing science
+            education research.
+        </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         ABOUT CONTENT
+    ====================================================== -->
+
+    <section class="about-grid">
+
+        <div class="about-text">
+
+            <div class="about-divider"></div>
+
+            <p>
+                My work moves between
+                <strong>science and science education</strong>,
+                with a particular interest in physics, computation,
+                modelling, and the ways people learn to reason about
+                complex ideas. I enjoy taking ideas that are often
+                presented as abstract or inaccessible and asking
+                whether they can be made more tangible through models,
+                simulations, visualisations, or carefully constructed
+                explanations.
+            </p>
+
+            <p>
+                I am also interested in the space between
+                <strong>research and making</strong>. A model is not
+                only something that represents an idea; it can also
+                become a way of thinking with that idea. This is why
+                I build computational models and simulations alongside
+                more conventional forms of research and writing.
+            </p>
+
+            <p>
+                This website is a collection of that work: my research,
+                published writing, talks, computational projects, notes,
+                and resources. It is also a record of questions I am
+                currently exploring—some with answers, many still
+                without them.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <span>
+            © 2026 Rupsa
+        </span>
+
+        <span>
+            Research · Writing · Exploration
+        </span>
+
+    </footer>
+
+</main>
+
+
+<script>
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+const toggle = document.getElementById("themeToggle");
+
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    toggle.textContent = "☀";
+}
+
+toggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+    const isDark =
+        document.body.classList.contains("dark");
+
+    toggle.textContent =
+        isDark ? "☀" : "☾";
+
+    localStorage.setItem(
+        "theme",
+        isDark ? "dark" : "light"
+    );
+
+});
+</script>
+
+</body>
+</html>
